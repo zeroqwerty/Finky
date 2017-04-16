@@ -6,9 +6,7 @@
 //  Copyright © 2017 DoPPleR. All rights reserved.
 //
 
-import Foundation
 import SideMenuController
-import SwiftyVK
 
 class CustomSideMenuController: SideMenuController {
     

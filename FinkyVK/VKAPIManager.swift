@@ -48,11 +48,41 @@ class VKAPIManager: VKDelegate {
         return UIApplication.shared.delegate!.window!!.rootViewController!
     }
     
-    static func logout() {
+    class func logout() {
         VK.logOut()
     }
     
-    static func login() {
+    class func login() {
         VK.logIn()
+    }
+    
+    class func isAuthorized() -> Bool {
+        return VK.state == .authorized
+    }
+    
+    class func getBaseInfo() {
+        let request = VK.API.remote(method: "getBaseInfo")
+        request.send(
+            onSuccess:  {
+                response in
+                VKJSONParser.parseBaseInfo(profile: response)
+            },
+            onError:  {
+                error in
+                print("\(error)")
+        })
+    }
+}
+
+private typealias VKJSONParser = VKAPIManager
+extension VKJSONParser {
+    
+    // Парсит ответ базовой информации о пользователе
+    class func parseBaseInfo(profile: JSON) {
+        MenuController.user_id = profile["id"].int
+        MenuController.user_name = profile["first_name"].string! + " " + profile["last_name"].string!
+        MenuController.user_photo = profile["photo"].string
+        MenuController.user_header = profile["thumb"].string
+        NotificationCenter.default.post(name: Notification.Name(rawValue: BaseProfileInfoSuccessLoad), object: nil)
     }
 }

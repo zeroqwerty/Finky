@@ -6,8 +6,6 @@
 //  Copyright © 2017 DoPPleR. All rights reserved.
 //
 
-import Foundation
-
 class MenuItems {
     
     let name: String

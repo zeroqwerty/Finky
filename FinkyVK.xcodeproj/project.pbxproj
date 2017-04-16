@@ -24,6 +24,7 @@
 		FA48F63B1EA27F45008E2671 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48F6361EA27F45008E2671 /* MenuCell.swift */; };
 		FA48F63F1EA28275008E2671 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48F63D1EA28275008E2671 /* DateFormatter.swift */; };
 		FA48F6401EA28275008E2671 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48F63E1EA28275008E2671 /* Styles.swift */; };
+		FAB105861EA3FD0D001E916D /* VKAPIManagerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB105851EA3FD0D001E916D /* VKAPIManagerNotifications.swift */; };
 		FAE4BBEF1EA37B5700449EDF /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4BBEE1EA37B5700449EDF /* MenuItems.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		FA48F6361EA27F45008E2671 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		FA48F63D1EA28275008E2671 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		FA48F63E1EA28275008E2671 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		FAB105851EA3FD0D001E916D /* VKAPIManagerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIManagerNotifications.swift; sourceTree = "<group>"; };
 		FAE4BBEE1EA37B5700449EDF /* MenuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,9 @@
 		FA48F61E1EA27A46008E2671 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAB105831EA3F32C001E916D /* LoadingCell */,
+				FAB105821EA3F31B001E916D /* ErrorMaxRequestsCel */,
+				FAB105811EA3F30F001E916D /* ErrorNetworkCell */,
 				FA48F6101EA271FC008E2671 /* Main.storyboard */,
 				FA48F6151EA271FC008E2671 /* LaunchScreen.storyboard */,
 			);
@@ -139,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				FA48F62E1EA27EEA008E2671 /* VKAPIManager.swift */,
+				FAB105851EA3FD0D001E916D /* VKAPIManagerNotifications.swift */,
 			);
 			name = VKAPIManager;
 			sourceTree = "<group>";
@@ -147,6 +153,15 @@
 			isa = PBXGroup;
 			children = (
 				FA48F6311EA27F3B008E2671 /* Menu */,
+				FAB105781EA3F290001E916D /* News */,
+				FAB105791EA3F29F001E916D /* Feedback */,
+				FAB1057A1EA3F2A9001E916D /* Messages */,
+				FAB1057B1EA3F2BE001E916D /* Communities */,
+				FAB1057C1EA3F2D1001E916D /* Photos */,
+				FAB1057D1EA3F2D9001E916D /* Videos */,
+				FAB1057E1EA3F2E0001E916D /* Audios */,
+				FAB1057F1EA3F2E5001E916D /* Favorites */,
+				FAB105801EA3F2EC001E916D /* Settings */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -169,6 +184,90 @@
 				FA48F63E1EA28275008E2671 /* Styles.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		FAB105781EA3F290001E916D /* News */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		FAB105791EA3F29F001E916D /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Feedback;
+			sourceTree = "<group>";
+		};
+		FAB1057A1EA3F2A9001E916D /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		FAB1057B1EA3F2BE001E916D /* Communities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Communities;
+			sourceTree = "<group>";
+		};
+		FAB1057C1EA3F2D1001E916D /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Photos;
+			sourceTree = "<group>";
+		};
+		FAB1057D1EA3F2D9001E916D /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Videos;
+			sourceTree = "<group>";
+		};
+		FAB1057E1EA3F2E0001E916D /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Audios;
+			sourceTree = "<group>";
+		};
+		FAB1057F1EA3F2E5001E916D /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
+		FAB105801EA3F2EC001E916D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		FAB105811EA3F30F001E916D /* ErrorNetworkCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ErrorNetworkCell;
+			sourceTree = "<group>";
+		};
+		FAB105821EA3F31B001E916D /* ErrorMaxRequestsCel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ErrorMaxRequestsCel;
+			sourceTree = "<group>";
+		};
+		FAB105831EA3F32C001E916D /* LoadingCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LoadingCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB105861EA3FD0D001E916D /* VKAPIManagerNotifications.swift in Sources */,
 				FA48F63F1EA28275008E2671 /* DateFormatter.swift in Sources */,
 				FA48F6401EA28275008E2671 /* Styles.swift in Sources */,
 				FA48F63A1EA27F45008E2671 /* MenuController.swift in Sources */,

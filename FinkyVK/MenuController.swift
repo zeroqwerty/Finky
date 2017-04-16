@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import SwiftyVK
 import Kingfisher
 
 class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
+    private var lastSelected: NSIndexPath?
     private var menuItems: [MenuItems] = [MenuItems(name: "Новости", image: "News", segue: "showNews"),
                                   MenuItems(name: "Ответы", image: "Feedback", segue: "showFeedback"),
                                   MenuItems(name: "Сообщения", image: "Messages", segue: "showMessages"),
@@ -33,19 +33,46 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     
+    static var user_id: Int?
+    static var user_name: String?
+    static var user_photo: String?
+    static var user_header: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        headerImage.image = UIImage(named: "ava-h")
-        headerPhoto.image = UIImage(named: "ava-h")
-        headerPhoto.layer.cornerRadius = 20
-        headerName.text = "Профиль"
+        loadProfileContent()
+        VKAPIManager.getBaseInfo()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BaseProfileInfoSuccessLoad), object: nil, queue: OperationQueue.main) { _ in
+            self.loadProfileContent()
+        }
+        
+        lastSelected = NSIndexPath(row: 0, section: 0)
+        tableView.selectRow(at: lastSelected! as IndexPath, animated: true, scrollPosition: UITableViewScrollPosition(rawValue: 0)!)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openProfile))
         headerTouchZone.addGestureRecognizer(tap)
     }
     
+    func loadProfileContent() {
+        if MenuController.user_id != nil || MenuController.user_name != nil || MenuController.user_photo != nil || MenuController.user_header != nil {
+            headerImage.kf.setImage(with: URL(string: MenuController.user_header!))
+            headerPhoto.kf.setImage(with: URL(string: MenuController.user_photo!))
+            headerPhoto.layer.cornerRadius = 20
+            headerName.text = MenuController.user_name
+        } else {
+            headerImage.image = UIImage(named: "ava-h")
+            headerPhoto.image = UIImage(named: "ava-h")
+            headerPhoto.layer.cornerRadius = 20
+            headerName.text = "Профиль"
+        }
+    }
+    
     func openProfile() {
+        if let index = lastSelected {
+            tableView.deselectRow(at: index as IndexPath, animated: true)
+        }
         sideMenuController?.performSegue(withIdentifier: "showProfile", sender: nil)
     }
     
@@ -85,6 +112,7 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        lastSelected = indexPath as NSIndexPath?
         sideMenuController?.performSegue(withIdentifier: menuItems[indexPath.row].segue, sender: nil)
     }
     
