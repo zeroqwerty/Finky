@@ -12,16 +12,16 @@ import Kingfisher
 class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     private var lastSelected: NSIndexPath?
-    private var menuItems: [MenuItems] = [MenuItems(name: "Новости", image: "News", segue: "showNews"),
-                                  MenuItems(name: "Ответы", image: "Feedback", segue: "showFeedback"),
-                                  MenuItems(name: "Сообщения", image: "Messages", segue: "showMessages"),
-                                  MenuItems(name: "Друзья", image: "Friends", segue: "showFriends"),
-                                  MenuItems(name: "Группы", image: "Communities", segue: "showCommunities"),
-                                  MenuItems(name: "Фотографии", image: "Photos", segue: "showPhotos"),
-                                  MenuItems(name: "Видеозаписи", image: "Videos", segue: "showVideos"),
-                                  MenuItems(name: "Аудиозаписи", image: "Audios", segue: "showAudios"),
-                                  MenuItems(name: "Закладки", image: "Favorites", segue: "showFavorites"),
-                                  MenuItems(name: "Настройки", image: "Settings", segue: "showSettings")]
+    private var menuItems: [MenuItems] = [MenuItems(name: "Новости",     image: "News",        segue: "showNews"),
+                                          MenuItems(name: "Ответы",      image: "Feedback",    segue: "showFeedback"),
+                                          MenuItems(name: "Сообщения",   image: "Messages",    segue: "showMessages"),
+                                          MenuItems(name: "Друзья",      image: "Friends",     segue: "showFriends"),
+                                          MenuItems(name: "Группы",      image: "Communities", segue: "showCommunities"),
+                                          MenuItems(name: "Фотографии",  image: "Photos",      segue: "showPhotos"),
+                                          MenuItems(name: "Видеозаписи", image: "Videos",      segue: "showVideos"),
+                                          MenuItems(name: "Аудиозаписи", image: "Audios",      segue: "showAudios"),
+                                          MenuItems(name: "Закладки",    image: "Favorites",   segue: "showFavorites"),
+                                          MenuItems(name: "Настройки",   image: "Settings",    segue: "showSettings")]
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewPanel: UIView!
@@ -38,34 +38,46 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
     static var user_photo: String?
     static var user_header: String?
     
+    var requestManagerStatus: RequestManagerObject.State {
+        return RequestManager.sharedInstance.getBaseInfo.state
+    }
+    
+    var requestManagerError: RequestManagerObject.ErrorRequest {
+        return RequestManager.sharedInstance.getBaseInfo.error
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadProfileContent()
-        VKAPIManager.getBaseInfo()
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BaseProfileInfoSuccessLoad), object: nil, queue: OperationQueue.main) { _ in
-            self.loadProfileContent()
-        }
+        requestLoadBaseInfo()
         
         lastSelected = NSIndexPath(row: 0, section: 0)
         tableView.selectRow(at: lastSelected! as IndexPath, animated: true, scrollPosition: UITableViewScrollPosition(rawValue: 0)!)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.openProfile))
-        headerTouchZone.addGestureRecognizer(tap)
     }
     
-    func loadProfileContent() {
+    func requestLoadBaseInfo() {
+        RequestManager.sharedInstance.getBaseInfo.performRequest() { success in
+            self.setBaseInfo()
+        }
+    }
+    
+    func setBaseInfo() {
         if MenuController.user_id != nil || MenuController.user_name != nil || MenuController.user_photo != nil || MenuController.user_header != nil {
             headerImage.kf.setImage(with: URL(string: MenuController.user_header!))
             headerPhoto.kf.setImage(with: URL(string: MenuController.user_photo!))
             headerPhoto.layer.cornerRadius = 20
             headerName.text = MenuController.user_name
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.openProfile))
+            headerTouchZone.addGestureRecognizer(tap)
         } else {
             headerImage.image = UIImage(named: "ava-h")
             headerPhoto.image = UIImage(named: "ava-h")
             headerPhoto.layer.cornerRadius = 20
             headerName.text = "Профиль"
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(requestLoadBaseInfo))
+            headerTouchZone.addGestureRecognizer(tap)
         }
     }
     

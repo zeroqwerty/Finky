@@ -30,12 +30,12 @@ class VKAPIManager: VKDelegate {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = next
         
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
+        //NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidAuthorize"), object: nil)
     }
     
     func vkAutorizationFailedWith(error: AuthError) {
         print("Autorization failed with error: \n\(error)")
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidNotAuthorize"), object: nil)
+        //NotificationCenter.default.post(name: Notification.Name(rawValue: "TestVkDidNotAuthorize"), object: nil)
     }
     
     func vkDidUnauthorize() {}
@@ -60,18 +60,23 @@ class VKAPIManager: VKDelegate {
         return VK.state == .authorized
     }
     
-    class func getBaseInfo() {
+    
+    class func baseInfoGet() -> RequestExecution {
+        
         let request = VK.API.remote(method: "getBaseInfo")
-        request.send(
+        let requestSend = request.send(
             onSuccess:  {
                 response in
                 VKJSONParser.parseBaseInfo(profile: response)
-            },
+        },
             onError:  {
                 error in
                 print("\(error)")
         })
+        
+        return requestSend!
     }
+    
 }
 
 private typealias VKJSONParser = VKAPIManager
@@ -83,6 +88,7 @@ extension VKJSONParser {
         MenuController.user_name = profile["first_name"].string! + " " + profile["last_name"].string!
         MenuController.user_photo = profile["photo"].string
         MenuController.user_header = profile["thumb"].string
+        
         NotificationCenter.default.post(name: Notification.Name(rawValue: BaseProfileInfoSuccessLoad), object: nil)
     }
 }
