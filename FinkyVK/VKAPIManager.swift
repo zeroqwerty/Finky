@@ -11,7 +11,7 @@ import UIKit
 
 class VKAPIManager: VKDelegate {
     
-    let appID = "5744830"
+    let appID = "5744830" // 5256902 VK LIVE
     let scope: Set<VK.Scope> = [.offline, .friends, .photos, .video, .status, .messages, .wall, .groups, .notifications, .email]
     
     init() {
@@ -60,7 +60,6 @@ class VKAPIManager: VKDelegate {
         return VK.state == .authorized
     }
     
-    
     class func baseInfoGet() -> RequestExecution {
         
         let request = VK.API.remote(method: "getBaseInfo")
@@ -71,7 +70,23 @@ class VKAPIManager: VKDelegate {
         },
             onError:  {
                 error in
-                print("\(error)")
+                print("ERROR IN baseInfoGet(): \(error.localizedDescription)")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: VKAPIBaseProfileInfoErrorLoad), object: nil)
+        })
+        
+        return requestSend!
+    }
+    
+    class func friendsGet() -> RequestExecution {
+        
+        let request = VK.API.Friends.get()
+        let requestSend = request.send(
+            onSuccess:  {
+                response in
+                VKJSONParser.parseFriends(friends: response)
+            }, onError:  {
+            error in
+                
         })
         
         return requestSend!
@@ -89,6 +104,11 @@ extension VKJSONParser {
         MenuController.user_photo = profile["photo"].string
         MenuController.user_header = profile["thumb"].string
         
-        NotificationCenter.default.post(name: Notification.Name(rawValue: BaseProfileInfoSuccessLoad), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: VKAPIBaseProfileInfoSuccessLoad), object: nil)
+    }
+    
+    // Парсит ответ со список друзей
+    class func parseFriends(friends: JSON) {
+        
     }
 }

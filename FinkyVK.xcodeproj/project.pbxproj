@@ -29,6 +29,7 @@
 		FA48F63F1EA28275008E2671 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48F63D1EA28275008E2671 /* DateFormatter.swift */; };
 		FA48F6401EA28275008E2671 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48F63E1EA28275008E2671 /* Styles.swift */; };
 		FAB105861EA3FD0D001E916D /* VKAPIManagerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB105851EA3FD0D001E916D /* VKAPIManagerNotifications.swift */; };
+		FAB1E64A1EA55F0E00F69F47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB1E6491EA55F0E00F69F47 /* SettingsTableViewController.swift */; };
 		FAE4BBEF1EA37B5700449EDF /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4BBEE1EA37B5700449EDF /* MenuItems.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		FA48F63D1EA28275008E2671 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		FA48F63E1EA28275008E2671 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		FAB105851EA3FD0D001E916D /* VKAPIManagerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIManagerNotifications.swift; sourceTree = "<group>"; };
+		FAB1E6491EA55F0E00F69F47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FAE4BBEE1EA37B5700449EDF /* MenuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +301,7 @@
 		FAB105801EA3F2EC001E916D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				FAB1E6491EA55F0E00F69F47 /* SettingsTableViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				FA2CA6291EA4A4A60076A671 /* GetBaseInfo.swift in Sources */,
 				FA48F6201EA27A84008E2671 /* AuthController.swift in Sources */,
 				FA2CA6201EA49CD80076A671 /* RequestManager.swift in Sources */,
+				FAB1E64A1EA55F0E00F69F47 /* SettingsTableViewController.swift in Sources */,
 				FA48F62F1EA27EEA008E2671 /* VKAPIManager.swift in Sources */,
 				FAE4BBEF1EA37B5700449EDF /* MenuItems.swift in Sources */,
 				FA48F63B1EA27F45008E2671 /* MenuCell.swift in Sources */,

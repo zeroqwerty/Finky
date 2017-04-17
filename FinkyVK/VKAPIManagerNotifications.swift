@@ -7,5 +7,7 @@
 //
 
 /// Профиль в боковом меню
-let BaseProfileInfoSuccessLoad = "BaseProfileInfoSuccessLoad" // Успех
-let BaseProfileInfoErrorLoad = "BaseProfileInfoErrorLoad" // Ошибка
+let VKAPIBaseProfileInfoSuccessLoad = "BaseProfileInfoSuccessLoad" // Успех
+let VKAPIBaseProfileInfoErrorLoad = "BaseProfileInfoErrorLoad" // Ошибка
+
+/// Профиль 

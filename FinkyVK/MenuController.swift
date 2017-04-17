@@ -38,10 +38,12 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
     static var user_photo: String?
     static var user_header: String?
     
+    // Статус выполнения запроса
     var requestManagerStatus: RequestManagerObject.State {
         return RequestManager.sharedInstance.getBaseInfo.state
     }
     
+    // Ошибки, которые могут возникнуть при выполнении запроса
     var requestManagerError: RequestManagerObject.ErrorRequest {
         return RequestManager.sharedInstance.getBaseInfo.error
     }

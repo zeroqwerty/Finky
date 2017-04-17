@@ -36,7 +36,7 @@ class RequestManager {
     
 }
 
-// MARK: Типы данных
+// MARK: -Типы данных
 
 private typealias _RequestManagerDataTypes = RequestManager
 extension _RequestManagerDataTypes {

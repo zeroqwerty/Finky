@@ -18,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Изменение шрифта в заголовках навигации
+        // Изменение цвета и шрифта navigationBar
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 18)!]
+        UINavigationBar.appearance().barTintColor = Styles.navigationBarBackground
         
         vkDelegate = VKAPIManager()
         return true

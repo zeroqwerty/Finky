@@ -29,7 +29,7 @@ class GetBaseInfo: RequestManagerObject {
         }
         
         // Слушатель для уведомления об успешном завершении получения друзей
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BaseProfileInfoSuccessLoad), object: nil, queue: OperationQueue.main) { notification in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: VKAPIBaseProfileInfoSuccessLoad), object: nil, queue: OperationQueue.main) { notification in
             self.removeActivState() // Удаление состояние выполнения запроса
             // Сохранение данных
             self.state = .Results
@@ -39,7 +39,7 @@ class GetBaseInfo: RequestManagerObject {
         }
         
         // Слушатель для получения уведомления об ошибке при подключении к интернету
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BaseProfileInfoErrorLoad), object: nil, queue: OperationQueue.main) { _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: VKAPIBaseProfileInfoErrorLoad), object: nil, queue: OperationQueue.main) { _ in
             self.removeActivState() // Удаление состояние выполнения запроса
             
             // Сохранение данных
@@ -50,7 +50,7 @@ class GetBaseInfo: RequestManagerObject {
         }
         
         // Слушатель для уведомления о других ошибках
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: BaseProfileInfoErrorLoad), object: nil, queue: OperationQueue.main) { _ in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: VKAPIBaseProfileInfoErrorLoad), object: nil, queue: OperationQueue.main) { _ in
             self.removeActivState() // Удаление состояние выполнения запроса
             
             // Сохранение данных
@@ -59,7 +59,6 @@ class GetBaseInfo: RequestManagerObject {
             
             completion(false)
         }
-        
         
         let request = VKAPIManager.baseInfoGet()
         
