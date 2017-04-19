@@ -12,7 +12,7 @@ class CustomSideMenuController: SideMenuController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegue(withIdentifier: "showProfile", sender: nil)
+        performSegue(withIdentifier: "showNews", sender: nil)
         performSegue(withIdentifier: "containSideMenu", sender: nil)
         
     }

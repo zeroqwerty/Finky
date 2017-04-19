@@ -7,7 +7,9 @@
 //
 
 /// Профиль в боковом меню
-let VKAPIBaseProfileInfoSuccessLoad = "BaseProfileInfoSuccessLoad" // Успех
-let VKAPIBaseProfileInfoErrorLoad = "BaseProfileInfoErrorLoad" // Ошибка
+let VKAPIBaseProfileInfoSuccessLoad = "VKAPIBaseProfileInfoSuccessLoad" // Успех
+let VKAPIBaseProfileInfoErrorLoad = "VKAPIBaseProfileInfoErrorLoad" // Ошибка
 
-/// Профиль 
+/// Список друзей
+let VKAPIFriendsSuccessLoad = "VKAPIFriendsSuccessLoad" // Успех
+let VKAPIFriendsErrorLoad = "VKAPIFriendsErrorLoad" // Ошибка

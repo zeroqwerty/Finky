@@ -34,9 +34,11 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     static var user_id: Int?
-    static var user_name: String?
+    static var user_firstname: String?
+    static var user_lastname: String?
     static var user_photo: String?
     static var user_header: String?
+    static var user_verif: Bool?
     
     // Статус выполнения запроса
     var requestManagerStatus: RequestManagerObject.State {
@@ -64,11 +66,17 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func setBaseInfo() {
-        if MenuController.user_id != nil || MenuController.user_name != nil || MenuController.user_photo != nil || MenuController.user_header != nil {
-            headerImage.kf.setImage(with: URL(string: MenuController.user_header!))
+        if MenuController.user_id != nil || MenuController.user_firstname != nil || MenuController.user_lastname != nil || MenuController.user_photo != nil {
+            
+            if MenuController.user_header != nil {
+                headerImage.kf.setImage(with: URL(string: MenuController.user_header!))
+            } else {
+                headerImage.image = UIImage(named: "ava-h")
+            }
+            
             headerPhoto.kf.setImage(with: URL(string: MenuController.user_photo!))
             headerPhoto.layer.cornerRadius = 20
-            headerName.text = MenuController.user_name
+            headerName.text = MenuController.user_firstname! + " " + MenuController.user_lastname!
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.openProfile))
             headerTouchZone.addGestureRecognizer(tap)
@@ -87,6 +95,7 @@ class MenuController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let index = lastSelected {
             tableView.deselectRow(at: index as IndexPath, animated: true)
         }
+        
         sideMenuController?.performSegue(withIdentifier: "showProfile", sender: nil)
     }
     

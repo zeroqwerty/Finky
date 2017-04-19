@@ -15,7 +15,7 @@ class VKAPIManager: VKDelegate {
     let scope: Set<VK.Scope> = [.offline, .friends, .photos, .video, .status, .messages, .wall, .groups, .notifications, .email]
     
     init() {
-        VK.config.apiVersion = "5.63"
+        VK.config.apiVersion = "5.65"
         VK.config.language = "ru"
         VK.configure(withAppId: appID, delegate: self)
     }
@@ -100,7 +100,8 @@ extension VKJSONParser {
     // Парсит ответ базовой информации о пользователе
     class func parseBaseInfo(profile: JSON) {
         MenuController.user_id = profile["id"].int
-        MenuController.user_name = profile["first_name"].string! + " " + profile["last_name"].string!
+        MenuController.user_firstname = profile["first_name"].string!
+        MenuController.user_lastname = profile["last_name"].string!
         MenuController.user_photo = profile["photo"].string
         MenuController.user_header = profile["thumb"].string
         

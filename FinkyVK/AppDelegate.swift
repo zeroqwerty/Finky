@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Изменение цвета и шрифта navigationBar
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 18)!]
         UINavigationBar.appearance().barTintColor = Styles.navigationBarBackground
+        UINavigationBar.appearance().tintColor = Styles.navigationBarTintColor
         
         vkDelegate = VKAPIManager()
         return true

@@ -14,13 +14,36 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var settingsProfileImage: UIImageView!
     @IBOutlet weak var settingsProfileName: UILabel!
     
+    @IBOutlet weak var offlineImage: UIImageView!
+    @IBOutlet weak var themeImage: UIImageView!
+    @IBOutlet weak var generalImage: UIImageView!
+    @IBOutlet weak var notificationsImage: UIImageView!
+    @IBOutlet weak var aboutImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if MenuController.user_photo != nil || MenuController.user_name != nil {
+        // Картинка настроек невидимости
+        offlineImage.image = UIImage(named: "Offline_Mode")?.withRenderingMode(.alwaysTemplate)
+        offlineImage.tintColor = UIColor(red: 25/255.0, green: 118/255.0, blue: 210/255.0, alpha: 1.0)
+        
+        // Картинка настроек темы
+        themeImage.image = UIImage(named: "Theme")?.withRenderingMode(.alwaysTemplate)
+        themeImage.tintColor = UIColor(red: 25/255.0, green: 118/255.0, blue: 210/255.0, alpha: 1.0)
+        // Картинка основных настроек
+        generalImage.image = UIImage(named: "Settings")?.withRenderingMode(.alwaysTemplate)
+        generalImage.tintColor = UIColor(red: 25/255.0, green: 118/255.0, blue: 210/255.0, alpha: 1.0)
+        // Картинка настроек уведомлений
+        notificationsImage.image = UIImage(named: "Notifications")?.withRenderingMode(.alwaysTemplate)
+        notificationsImage.tintColor = UIColor(red: 25/255.0, green: 118/255.0, blue: 210/255.0, alpha: 1.0)
+        // Картинка "О приложении"
+        aboutImage.image = UIImage(named: "About")?.withRenderingMode(.alwaysTemplate)
+        aboutImage.tintColor = UIColor(red: 25/255.0, green: 118/255.0, blue: 210/255.0, alpha: 1.0)
+        
+        if MenuController.user_photo != nil || MenuController.user_firstname != nil || MenuController.user_lastname != nil {
             settingsProfileImage.kf.setImage(with: URL(string: MenuController.user_photo!))
-            settingsProfileImage.layer.cornerRadius = 40
-            settingsProfileName.text = MenuController.user_name
+            settingsProfileImage.layer.cornerRadius = 42.5
+            settingsProfileName.text = MenuController.user_firstname! + " " + MenuController.user_lastname!
         }
     
     }    
